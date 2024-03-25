@@ -1,0 +1,7 @@
+from sumsub_python_sdk.paths.resources_applicants_applicant_id_info_company_info_beneficiaries_beneficiary_applicant_id.delete import ApiFordelete
+
+
+class ResourcesApplicantsApplicantIdInfoCompanyInfoBeneficiariesBeneficiaryApplicantId(
+    ApiFordelete,
+):
+    pass

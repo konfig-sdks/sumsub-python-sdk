@@ -1,0 +1,239 @@
+import typing_extensions
+
+from sumsub_python_sdk.paths import PathValues
+from sumsub_python_sdk.apis.paths.resources_status_api import ResourcesStatusApi
+from sumsub_python_sdk.apis.paths.resources_applicants import ResourcesApplicants
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_move_to_level import ResourcesApplicantsApplicantIdMoveToLevel
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_required_id_docs import ResourcesApplicantsApplicantIdRequiredIdDocs
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_info_id_doc import ResourcesApplicantsApplicantIdInfoIdDoc
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_fixed_info import ResourcesApplicantsApplicantIdFixedInfo
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_info import ResourcesApplicantsApplicantIdInfo
+from sumsub_python_sdk.apis.paths.resources_applicants___ingest_completedlevel_namelevel_name import ResourcesApplicantsIngestCompletedlevelNamelevelName
+from sumsub_python_sdk.apis.paths.resources_applicants___applicant_import import ResourcesApplicantsApplicantImport
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_status_test_completed import ResourcesApplicantsApplicantIdStatusTestCompleted
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_tags_add import ResourcesApplicantsApplicantIdTagsAdd
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_tags import ResourcesApplicantsApplicantIdTags
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_status_pendingreasonreason import ResourcesApplicantsApplicantIdStatusPendingreasonreason
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_blacklistnotenote import ResourcesApplicantsApplicantIdBlacklistnotenote
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_reset import ResourcesApplicantsApplicantIdReset
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_reset_step_id_doc_set_type import ResourcesApplicantsApplicantIdResetStepIdDocSetType
+from sumsub_python_sdk.apis.paths.resources_inspections_inspection_id_resources_image_id import ResourcesInspectionsInspectionIdResourcesImageId
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_presence_status import ResourcesApplicantsApplicantIdPresenceStatus
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_agreement import ResourcesApplicantsApplicantIdAgreement
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_one import ResourcesApplicantsApplicantIdOne
+from sumsub_python_sdk.apis.paths.resources_applicants__external_user_idexternal_user_id_one import ResourcesApplicantsExternalUserIdexternalUserIdOne
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_status import ResourcesApplicantsApplicantIdStatus
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_required_id_docs_status import ResourcesApplicantsApplicantIdRequiredIdDocsStatus
+from sumsub_python_sdk.apis.paths.resources_moderation_states__applicant_idapplicant_id import ResourcesModerationStatesApplicantIdapplicantId
+from sumsub_python_sdk.apis.paths.resources_checks_latesttype_tin import ResourcesChecksLatesttypeTIN
+from sumsub_python_sdk.apis.paths.resources_checks_latesttype_email_confirmation import ResourcesChecksLatesttypeEMAILCONFIRMATION
+from sumsub_python_sdk.apis.paths.resources_checks_latesttype_phone_confirmation import ResourcesChecksLatesttypePHONECONFIRMATION
+from sumsub_python_sdk.apis.paths.resources_checks_latesttype_ip_check import ResourcesChecksLatesttypeIPCHECK
+from sumsub_python_sdk.apis.paths.resources_applicant_fraud_networks___by_applicant_applicant_id import ResourcesApplicantFraudNetworksByApplicantApplicantId
+from sumsub_python_sdk.apis.paths.resources_applicant_fraud_networks_network_id_one import ResourcesApplicantFraudNetworksNetworkIdOne
+from sumsub_python_sdk.apis.paths.resources_checks_cross_checkcomparison_modecomparison_mode import ResourcesChecksCrossCheckcomparisonModecomparisonMode
+from sumsub_python_sdk.apis.paths.resources_sdk_integrations_levels_level_name_websdk_link import ResourcesSdkIntegrationsLevelsLevelNameWebsdkLink
+from sumsub_python_sdk.apis.paths.resources_applicants___levels import ResourcesApplicantsLevels
+from sumsub_python_sdk.apis.paths.resources_checks_latesttype_poa import ResourcesChecksLatesttypePOA
+from sumsub_python_sdk.apis.paths.resources_access_tokens import ResourcesAccessTokens
+from sumsub_python_sdk.apis.paths.resources_applicant_actions__applicant_idapplicant_id import ResourcesApplicantActionsApplicantIdapplicantId
+from sumsub_python_sdk.apis.paths.resources_applicant_actions_action_id_one import ResourcesApplicantActionsActionIdOne
+from sumsub_python_sdk.apis.paths.resources_applicant_actions___for_applicant_applicant_idlevel_namelevel_name import ResourcesApplicantActionsForApplicantApplicantIdlevelNamelevelName
+from sumsub_python_sdk.apis.paths.resources_applicant_actions___for_applicant_applicant_id_level_namepayment_source import ResourcesApplicantActionsForApplicantApplicantIdLevelNamepaymentSource
+from sumsub_python_sdk.apis.paths.resources_applicant_actions_action_id_review_status_pending import ResourcesApplicantActionsActionIdReviewStatusPending
+from sumsub_python_sdk.apis.paths.resources_applicant_actions___for_applicant_applicant_id_payment_method import ResourcesApplicantActionsForApplicantApplicantIdPaymentMethod
+from sumsub_python_sdk.apis.paths.resources_applicant_actions_action_id_payment_method import ResourcesApplicantActionsActionIdPaymentMethod
+from sumsub_python_sdk.apis.paths.resources_applicant_actions_action_id_images_image_idpreviewis_preview import ResourcesApplicantActionsActionIdImagesImageIdpreviewisPreview
+from sumsub_python_sdk.apis.paths.resources_applicant_actions_action_id_images import ResourcesApplicantActionsActionIdImages
+from sumsub_python_sdk.apis.paths.resources_applicant_actions___for_applicant_applicant_id_crypto_source_of_funds import ResourcesApplicantActionsForApplicantApplicantIdCryptoSourceOfFunds
+from sumsub_python_sdk.apis.paths.resources_standalone_crypto_crypto_source_of_funds import ResourcesStandaloneCryptoCryptoSourceOfFunds
+from sumsub_python_sdk.apis.paths.resources_standalone_crypto_available_currencies import ResourcesStandaloneCryptoAvailableCurrencies
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_info_company_info_beneficiaries import ResourcesApplicantsApplicantIdInfoCompanyInfoBeneficiaries
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_info_company_info_beneficiaries_beneficiary_applicant_id import ResourcesApplicantsApplicantIdInfoCompanyInfoBeneficiariesBeneficiaryApplicantId
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_info_company_info import ResourcesApplicantsApplicantIdInfoCompanyInfo
+from sumsub_python_sdk.apis.paths.resources_checks_latesttype_company import ResourcesChecksLatesttypeCOMPANY
+from sumsub_python_sdk.apis.paths.resources_inspections_inspection_idfieldsvideo_ident_data import ResourcesInspectionsInspectionIdfieldsvideoIdentData
+from sumsub_python_sdk.apis.paths.resources_video_ident_applicant_applicant_id_media_composition_media_id import ResourcesVideoIdentApplicantApplicantIdMediaCompositionMediaId
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_ekyc_submit import ResourcesApplicantsApplicantIdEkycSubmit
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_ekyc_confirm_confirmationid import ResourcesApplicantsApplicantIdEkycConfirmConfirmationid
+from sumsub_python_sdk.apis.paths.resources_checks_latest import ResourcesChecksLatest
+from sumsub_python_sdk.apis.paths.resources_applicants_applicant_id_kyt_txns___data import ResourcesApplicantsApplicantIdKytTxnsData
+from sumsub_python_sdk.apis.paths.resources_applicants___kyt_txns___data import ResourcesApplicantsKytTxnsData
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_id_one import ResourcesKytTxnsIdOne
+from sumsub_python_sdk.apis.paths.resources_kyt_txns__data_txn_idexternal_txn_id_one import ResourcesKytTxnsDataTxnIdexternalTxnIdOne
+from sumsub_python_sdk.apis.paths.resources_kyt_misc_txns_import import ResourcesKytMiscTxnsImport
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_id_props import ResourcesKytTxnsIdProps
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_id___score import ResourcesKytTxnsIdScore
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_id_review_status_completed import ResourcesKytTxnsIdReviewStatusCompleted
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_id_tags import ResourcesKytTxnsIdTags
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_id_notes import ResourcesKytTxnsIdNotes
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_notes import ResourcesKytTxnsNotes
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_txn_id_data_info import ResourcesKytTxnsTxnIdDataInfo
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_txn_id_applicant_id_applicant_id import ResourcesKytTxnsTxnIdApplicantIdApplicantId
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_txn_id_data_applicant import ResourcesKytTxnsTxnIdDataApplicant
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_txn_id_ownership_confirmed import ResourcesKytTxnsTxnIdOwnershipConfirmed
+from sumsub_python_sdk.apis.paths.resources_kyt_txns_txn_id_ownership_unconfirmed import ResourcesKytTxnsTxnIdOwnershipUnconfirmed
+from sumsub_python_sdk.apis.paths.resources_vasps__ import ResourcesVasps
+from sumsub_python_sdk.apis.paths.resources_audit_trail_events import ResourcesAuditTrailEvents
+from sumsub_python_sdk.apis.paths.resources_applicant_fraud_networks import ResourcesApplicantFraudNetworks
+
+PathToApi = typing_extensions.TypedDict(
+    'PathToApi',
+    {
+        PathValues.RESOURCES_STATUS_API: ResourcesStatusApi,
+        PathValues.RESOURCES_APPLICANTS: ResourcesApplicants,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_MOVE_TO_LEVEL: ResourcesApplicantsApplicantIdMoveToLevel,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_REQUIRED_ID_DOCS: ResourcesApplicantsApplicantIdRequiredIdDocs,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_ID_DOC: ResourcesApplicantsApplicantIdInfoIdDoc,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_FIXED_INFO: ResourcesApplicantsApplicantIdFixedInfo,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO: ResourcesApplicantsApplicantIdInfo,
+        PathValues.RESOURCES_APPLICANTS__INGEST_COMPLETEDLEVEL_NAMELEVEL_NAME: ResourcesApplicantsIngestCompletedlevelNamelevelName,
+        PathValues.RESOURCES_APPLICANTS__APPLICANT_IMPORT: ResourcesApplicantsApplicantImport,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_STATUS_TEST_COMPLETED: ResourcesApplicantsApplicantIdStatusTestCompleted,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_TAGS_ADD: ResourcesApplicantsApplicantIdTagsAdd,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_TAGS: ResourcesApplicantsApplicantIdTags,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_STATUS_PENDINGREASONREASON: ResourcesApplicantsApplicantIdStatusPendingreasonreason,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_BLACKLISTNOTENOTE: ResourcesApplicantsApplicantIdBlacklistnotenote,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_RESET: ResourcesApplicantsApplicantIdReset,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_RESET_STEP_ID_DOC_SET_TYPE: ResourcesApplicantsApplicantIdResetStepIdDocSetType,
+        PathValues.RESOURCES_INSPECTIONS_INSPECTION_ID_RESOURCES_IMAGE_ID: ResourcesInspectionsInspectionIdResourcesImageId,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_PRESENCE_STATUS: ResourcesApplicantsApplicantIdPresenceStatus,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_AGREEMENT: ResourcesApplicantsApplicantIdAgreement,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_ONE: ResourcesApplicantsApplicantIdOne,
+        PathValues.RESOURCES_APPLICANTS_EXTERNAL_USER_IDEXTERNAL_USER_ID_ONE: ResourcesApplicantsExternalUserIdexternalUserIdOne,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_STATUS: ResourcesApplicantsApplicantIdStatus,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_REQUIRED_ID_DOCS_STATUS: ResourcesApplicantsApplicantIdRequiredIdDocsStatus,
+        PathValues.RESOURCES_MODERATION_STATES_APPLICANT_IDAPPLICANT_ID: ResourcesModerationStatesApplicantIdapplicantId,
+        PathValues.RESOURCES_CHECKS_LATESTTYPETIN: ResourcesChecksLatesttypeTIN,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEEMAIL_CONFIRMATION: ResourcesChecksLatesttypeEMAILCONFIRMATION,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEPHONE_CONFIRMATION: ResourcesChecksLatesttypePHONECONFIRMATION,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEIP_CHECK: ResourcesChecksLatesttypeIPCHECK,
+        PathValues.RESOURCES_APPLICANT_FRAUD_NETWORKS__BY_APPLICANT_APPLICANT_ID: ResourcesApplicantFraudNetworksByApplicantApplicantId,
+        PathValues.RESOURCES_APPLICANT_FRAUD_NETWORKS_NETWORK_ID_ONE: ResourcesApplicantFraudNetworksNetworkIdOne,
+        PathValues.RESOURCES_CHECKS_CROSS_CHECKCOMPARISON_MODECOMPARISON_MODE: ResourcesChecksCrossCheckcomparisonModecomparisonMode,
+        PathValues.RESOURCES_SDK_INTEGRATIONS_LEVELS_LEVEL_NAME_WEBSDK_LINK: ResourcesSdkIntegrationsLevelsLevelNameWebsdkLink,
+        PathValues.RESOURCES_APPLICANTS__LEVELS: ResourcesApplicantsLevels,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEPOA: ResourcesChecksLatesttypePOA,
+        PathValues.RESOURCES_ACCESS_TOKENS: ResourcesAccessTokens,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_APPLICANT_IDAPPLICANT_ID: ResourcesApplicantActionsApplicantIdapplicantId,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_ONE: ResourcesApplicantActionsActionIdOne,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_IDLEVEL_NAMELEVEL_NAME: ResourcesApplicantActionsForApplicantApplicantIdlevelNamelevelName,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_ID_LEVEL_NAMEPAYMENT_SOURCE: ResourcesApplicantActionsForApplicantApplicantIdLevelNamepaymentSource,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_REVIEW_STATUS_PENDING: ResourcesApplicantActionsActionIdReviewStatusPending,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_ID_PAYMENT_METHOD: ResourcesApplicantActionsForApplicantApplicantIdPaymentMethod,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_PAYMENT_METHOD: ResourcesApplicantActionsActionIdPaymentMethod,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_IMAGES_IMAGE_IDPREVIEWIS_PREVIEW: ResourcesApplicantActionsActionIdImagesImageIdpreviewisPreview,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_IMAGES: ResourcesApplicantActionsActionIdImages,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_ID_CRYPTO_SOURCE_OF_FUNDS: ResourcesApplicantActionsForApplicantApplicantIdCryptoSourceOfFunds,
+        PathValues.RESOURCES_STANDALONE_CRYPTO_CRYPTO_SOURCE_OF_FUNDS: ResourcesStandaloneCryptoCryptoSourceOfFunds,
+        PathValues.RESOURCES_STANDALONE_CRYPTO_AVAILABLE_CURRENCIES: ResourcesStandaloneCryptoAvailableCurrencies,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_COMPANY_INFO_BENEFICIARIES: ResourcesApplicantsApplicantIdInfoCompanyInfoBeneficiaries,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_COMPANY_INFO_BENEFICIARIES_BENEFICIARY_APPLICANT_ID: ResourcesApplicantsApplicantIdInfoCompanyInfoBeneficiariesBeneficiaryApplicantId,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_COMPANY_INFO: ResourcesApplicantsApplicantIdInfoCompanyInfo,
+        PathValues.RESOURCES_CHECKS_LATESTTYPECOMPANY: ResourcesChecksLatesttypeCOMPANY,
+        PathValues.RESOURCES_INSPECTIONS_INSPECTION_IDFIELDSVIDEO_IDENT_DATA: ResourcesInspectionsInspectionIdfieldsvideoIdentData,
+        PathValues.RESOURCES_VIDEO_IDENT_APPLICANT_APPLICANT_ID_MEDIA_COMPOSITION_MEDIA_ID: ResourcesVideoIdentApplicantApplicantIdMediaCompositionMediaId,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_EKYC_SUBMIT: ResourcesApplicantsApplicantIdEkycSubmit,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_EKYC_CONFIRM_CONFIRMATIONID: ResourcesApplicantsApplicantIdEkycConfirmConfirmationid,
+        PathValues.RESOURCES_CHECKS_LATEST: ResourcesChecksLatest,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_KYT_TXNS__DATA: ResourcesApplicantsApplicantIdKytTxnsData,
+        PathValues.RESOURCES_APPLICANTS__KYT_TXNS__DATA: ResourcesApplicantsKytTxnsData,
+        PathValues.RESOURCES_KYT_TXNS_ID_ONE: ResourcesKytTxnsIdOne,
+        PathValues.RESOURCES_KYT_TXNS_DATA_TXN_IDEXTERNAL_TXN_ID_ONE: ResourcesKytTxnsDataTxnIdexternalTxnIdOne,
+        PathValues.RESOURCES_KYT_MISC_TXNS_IMPORT: ResourcesKytMiscTxnsImport,
+        PathValues.RESOURCES_KYT_TXNS_ID_PROPS: ResourcesKytTxnsIdProps,
+        PathValues.RESOURCES_KYT_TXNS_ID__SCORE: ResourcesKytTxnsIdScore,
+        PathValues.RESOURCES_KYT_TXNS_ID_REVIEW_STATUS_COMPLETED: ResourcesKytTxnsIdReviewStatusCompleted,
+        PathValues.RESOURCES_KYT_TXNS_ID_TAGS: ResourcesKytTxnsIdTags,
+        PathValues.RESOURCES_KYT_TXNS_ID_NOTES: ResourcesKytTxnsIdNotes,
+        PathValues.RESOURCES_KYT_TXNS_NOTES: ResourcesKytTxnsNotes,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_DATA_INFO: ResourcesKytTxnsTxnIdDataInfo,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_APPLICANT_ID_APPLICANT_ID: ResourcesKytTxnsTxnIdApplicantIdApplicantId,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_DATA_APPLICANT: ResourcesKytTxnsTxnIdDataApplicant,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_OWNERSHIP_CONFIRMED: ResourcesKytTxnsTxnIdOwnershipConfirmed,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_OWNERSHIP_UNCONFIRMED: ResourcesKytTxnsTxnIdOwnershipUnconfirmed,
+        PathValues.RESOURCES_VASPS_: ResourcesVasps,
+        PathValues.RESOURCES_AUDIT_TRAIL_EVENTS: ResourcesAuditTrailEvents,
+        PathValues.RESOURCES_APPLICANT_FRAUD_NETWORKS: ResourcesApplicantFraudNetworks,
+    }
+)
+
+path_to_api = PathToApi(
+    {
+        PathValues.RESOURCES_STATUS_API: ResourcesStatusApi,
+        PathValues.RESOURCES_APPLICANTS: ResourcesApplicants,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_MOVE_TO_LEVEL: ResourcesApplicantsApplicantIdMoveToLevel,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_REQUIRED_ID_DOCS: ResourcesApplicantsApplicantIdRequiredIdDocs,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_ID_DOC: ResourcesApplicantsApplicantIdInfoIdDoc,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_FIXED_INFO: ResourcesApplicantsApplicantIdFixedInfo,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO: ResourcesApplicantsApplicantIdInfo,
+        PathValues.RESOURCES_APPLICANTS__INGEST_COMPLETEDLEVEL_NAMELEVEL_NAME: ResourcesApplicantsIngestCompletedlevelNamelevelName,
+        PathValues.RESOURCES_APPLICANTS__APPLICANT_IMPORT: ResourcesApplicantsApplicantImport,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_STATUS_TEST_COMPLETED: ResourcesApplicantsApplicantIdStatusTestCompleted,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_TAGS_ADD: ResourcesApplicantsApplicantIdTagsAdd,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_TAGS: ResourcesApplicantsApplicantIdTags,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_STATUS_PENDINGREASONREASON: ResourcesApplicantsApplicantIdStatusPendingreasonreason,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_BLACKLISTNOTENOTE: ResourcesApplicantsApplicantIdBlacklistnotenote,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_RESET: ResourcesApplicantsApplicantIdReset,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_RESET_STEP_ID_DOC_SET_TYPE: ResourcesApplicantsApplicantIdResetStepIdDocSetType,
+        PathValues.RESOURCES_INSPECTIONS_INSPECTION_ID_RESOURCES_IMAGE_ID: ResourcesInspectionsInspectionIdResourcesImageId,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_PRESENCE_STATUS: ResourcesApplicantsApplicantIdPresenceStatus,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_AGREEMENT: ResourcesApplicantsApplicantIdAgreement,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_ONE: ResourcesApplicantsApplicantIdOne,
+        PathValues.RESOURCES_APPLICANTS_EXTERNAL_USER_IDEXTERNAL_USER_ID_ONE: ResourcesApplicantsExternalUserIdexternalUserIdOne,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_STATUS: ResourcesApplicantsApplicantIdStatus,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_REQUIRED_ID_DOCS_STATUS: ResourcesApplicantsApplicantIdRequiredIdDocsStatus,
+        PathValues.RESOURCES_MODERATION_STATES_APPLICANT_IDAPPLICANT_ID: ResourcesModerationStatesApplicantIdapplicantId,
+        PathValues.RESOURCES_CHECKS_LATESTTYPETIN: ResourcesChecksLatesttypeTIN,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEEMAIL_CONFIRMATION: ResourcesChecksLatesttypeEMAILCONFIRMATION,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEPHONE_CONFIRMATION: ResourcesChecksLatesttypePHONECONFIRMATION,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEIP_CHECK: ResourcesChecksLatesttypeIPCHECK,
+        PathValues.RESOURCES_APPLICANT_FRAUD_NETWORKS__BY_APPLICANT_APPLICANT_ID: ResourcesApplicantFraudNetworksByApplicantApplicantId,
+        PathValues.RESOURCES_APPLICANT_FRAUD_NETWORKS_NETWORK_ID_ONE: ResourcesApplicantFraudNetworksNetworkIdOne,
+        PathValues.RESOURCES_CHECKS_CROSS_CHECKCOMPARISON_MODECOMPARISON_MODE: ResourcesChecksCrossCheckcomparisonModecomparisonMode,
+        PathValues.RESOURCES_SDK_INTEGRATIONS_LEVELS_LEVEL_NAME_WEBSDK_LINK: ResourcesSdkIntegrationsLevelsLevelNameWebsdkLink,
+        PathValues.RESOURCES_APPLICANTS__LEVELS: ResourcesApplicantsLevels,
+        PathValues.RESOURCES_CHECKS_LATESTTYPEPOA: ResourcesChecksLatesttypePOA,
+        PathValues.RESOURCES_ACCESS_TOKENS: ResourcesAccessTokens,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_APPLICANT_IDAPPLICANT_ID: ResourcesApplicantActionsApplicantIdapplicantId,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_ONE: ResourcesApplicantActionsActionIdOne,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_IDLEVEL_NAMELEVEL_NAME: ResourcesApplicantActionsForApplicantApplicantIdlevelNamelevelName,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_ID_LEVEL_NAMEPAYMENT_SOURCE: ResourcesApplicantActionsForApplicantApplicantIdLevelNamepaymentSource,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_REVIEW_STATUS_PENDING: ResourcesApplicantActionsActionIdReviewStatusPending,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_ID_PAYMENT_METHOD: ResourcesApplicantActionsForApplicantApplicantIdPaymentMethod,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_PAYMENT_METHOD: ResourcesApplicantActionsActionIdPaymentMethod,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_IMAGES_IMAGE_IDPREVIEWIS_PREVIEW: ResourcesApplicantActionsActionIdImagesImageIdpreviewisPreview,
+        PathValues.RESOURCES_APPLICANT_ACTIONS_ACTION_ID_IMAGES: ResourcesApplicantActionsActionIdImages,
+        PathValues.RESOURCES_APPLICANT_ACTIONS__FOR_APPLICANT_APPLICANT_ID_CRYPTO_SOURCE_OF_FUNDS: ResourcesApplicantActionsForApplicantApplicantIdCryptoSourceOfFunds,
+        PathValues.RESOURCES_STANDALONE_CRYPTO_CRYPTO_SOURCE_OF_FUNDS: ResourcesStandaloneCryptoCryptoSourceOfFunds,
+        PathValues.RESOURCES_STANDALONE_CRYPTO_AVAILABLE_CURRENCIES: ResourcesStandaloneCryptoAvailableCurrencies,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_COMPANY_INFO_BENEFICIARIES: ResourcesApplicantsApplicantIdInfoCompanyInfoBeneficiaries,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_COMPANY_INFO_BENEFICIARIES_BENEFICIARY_APPLICANT_ID: ResourcesApplicantsApplicantIdInfoCompanyInfoBeneficiariesBeneficiaryApplicantId,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_INFO_COMPANY_INFO: ResourcesApplicantsApplicantIdInfoCompanyInfo,
+        PathValues.RESOURCES_CHECKS_LATESTTYPECOMPANY: ResourcesChecksLatesttypeCOMPANY,
+        PathValues.RESOURCES_INSPECTIONS_INSPECTION_IDFIELDSVIDEO_IDENT_DATA: ResourcesInspectionsInspectionIdfieldsvideoIdentData,
+        PathValues.RESOURCES_VIDEO_IDENT_APPLICANT_APPLICANT_ID_MEDIA_COMPOSITION_MEDIA_ID: ResourcesVideoIdentApplicantApplicantIdMediaCompositionMediaId,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_EKYC_SUBMIT: ResourcesApplicantsApplicantIdEkycSubmit,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_EKYC_CONFIRM_CONFIRMATIONID: ResourcesApplicantsApplicantIdEkycConfirmConfirmationid,
+        PathValues.RESOURCES_CHECKS_LATEST: ResourcesChecksLatest,
+        PathValues.RESOURCES_APPLICANTS_APPLICANT_ID_KYT_TXNS__DATA: ResourcesApplicantsApplicantIdKytTxnsData,
+        PathValues.RESOURCES_APPLICANTS__KYT_TXNS__DATA: ResourcesApplicantsKytTxnsData,
+        PathValues.RESOURCES_KYT_TXNS_ID_ONE: ResourcesKytTxnsIdOne,
+        PathValues.RESOURCES_KYT_TXNS_DATA_TXN_IDEXTERNAL_TXN_ID_ONE: ResourcesKytTxnsDataTxnIdexternalTxnIdOne,
+        PathValues.RESOURCES_KYT_MISC_TXNS_IMPORT: ResourcesKytMiscTxnsImport,
+        PathValues.RESOURCES_KYT_TXNS_ID_PROPS: ResourcesKytTxnsIdProps,
+        PathValues.RESOURCES_KYT_TXNS_ID__SCORE: ResourcesKytTxnsIdScore,
+        PathValues.RESOURCES_KYT_TXNS_ID_REVIEW_STATUS_COMPLETED: ResourcesKytTxnsIdReviewStatusCompleted,
+        PathValues.RESOURCES_KYT_TXNS_ID_TAGS: ResourcesKytTxnsIdTags,
+        PathValues.RESOURCES_KYT_TXNS_ID_NOTES: ResourcesKytTxnsIdNotes,
+        PathValues.RESOURCES_KYT_TXNS_NOTES: ResourcesKytTxnsNotes,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_DATA_INFO: ResourcesKytTxnsTxnIdDataInfo,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_APPLICANT_ID_APPLICANT_ID: ResourcesKytTxnsTxnIdApplicantIdApplicantId,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_DATA_APPLICANT: ResourcesKytTxnsTxnIdDataApplicant,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_OWNERSHIP_CONFIRMED: ResourcesKytTxnsTxnIdOwnershipConfirmed,
+        PathValues.RESOURCES_KYT_TXNS_TXN_ID_OWNERSHIP_UNCONFIRMED: ResourcesKytTxnsTxnIdOwnershipUnconfirmed,
+        PathValues.RESOURCES_VASPS_: ResourcesVasps,
+        PathValues.RESOURCES_AUDIT_TRAIL_EVENTS: ResourcesAuditTrailEvents,
+        PathValues.RESOURCES_APPLICANT_FRAUD_NETWORKS: ResourcesApplicantFraudNetworks,
+    }
+)
